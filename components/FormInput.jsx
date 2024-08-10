@@ -1,11 +1,10 @@
-export default function FormInput({ fieldName, value, handleChange }) {
+export default function FormInput({ field, type, value, handleChange }) {
   return (
-    <>
-      <label>{fieldName}</label>
-      <input
-        value={value}
-        onChange={(e) => handleChange(fieldName, e.target.value)}
-      />
-    </>
+    <div>
+      <label>
+        {field}
+        <input name={field} type={type} value={value} onChange={handleChange} />
+      </label>
+    </div>
   );
 }

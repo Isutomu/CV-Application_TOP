@@ -1,13 +1,13 @@
 export default function HeaderSection({
-  sectionName,
-  status,
-  changeStatus,
-  submitted,
+  name,
+  sectionOpen,
+  toggleSectionOpen,
+  submitting,
 }) {
   return (
-    <div className={submitted ? "submitted" : ""}>
-      <span>{sectionName}</span>
-      <button onClick={changeStatus}>{status ? "▲" : "▼"}</button>
+    <div className={submitting ? "submitting" : ""}>
+      <span>{name}</span>
+      <button onClick={toggleSectionOpen}>{sectionOpen ? "▲" : "▼"}</button>
     </div>
   );
 }
