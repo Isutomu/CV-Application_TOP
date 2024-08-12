@@ -10,12 +10,12 @@ export default function SectionForm({ sectionInfo }) {
     data[field] = "";
     return data;
   }, {});
-  const [filledForms, setFilledForms] = useState([]);
 
   const [formData, setFormData] = useState(initialData);
   const [sectionOpen, setSectionOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [editing, setEditing] = useState(true);
+  const [filledForms, setFilledForms] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,8 +29,17 @@ export default function SectionForm({ sectionInfo }) {
     e.preventDefault();
 
     setSubmitting(true);
-    setFilledForms(filledForms.concat([{ ...formData, id: uuidv4() }]));
+    setFilledForms({ ...filledForms, [uuidv4()]: formData });
+    setFormData(initialData);
+
     setTimeout(() => setSubmitting(false), 1000);
+  };
+  const handleEdit = (id) => {
+    setFormData(filledForms[id]);
+
+    const filledFormsCp = { ...filledForms };
+    delete filledFormsCp[id];
+    setFilledForms(filledFormsCp);
   };
 
   return (
@@ -61,8 +70,12 @@ export default function SectionForm({ sectionInfo }) {
           <button onClick={handleSubmit}>submit</button>
         </form>
         <div className="filledForms">
-          {filledForms.map((filledForm) => (
-            <FilledForm key={filledForm.id} formInfo={filledForm} />
+          {Object.keys(filledForms).map((id) => (
+            <FilledForm
+              key={id}
+              formInfo={filledForms[id]}
+              editForm={() => handleEdit(id)}
+            />
           ))}
         </div>
       </div>

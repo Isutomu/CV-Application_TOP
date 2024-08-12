@@ -1,12 +1,12 @@
-export default function FilledForm({ formInfo }) {
-  const formInfoCp = { ...formInfo };
-  delete formInfoCp.id;
-
+export default function FilledForm({ formInfo, editForm }) {
   return (
     <div className="filledForm">
-      {Object.values(formInfoCp).map((info, index) => (
+      {Object.values(formInfo).map((info, index) => (
         <span key={index}>{info}</span>
       ))}
+      <button className="editForm" onClick={editForm}>
+        edit
+      </button>
     </div>
   );
 }
