@@ -1,6 +1,8 @@
 import { useState } from "react";
 import FormInput from "./FormInput";
 import HeaderSection from "./HeaderSection";
+import FilledForm from "./FilledForm";
+import { v4 as uuidv4 } from "uuid";
 
 export default function SectionForm({ sectionInfo }) {
   const fieldsName = Object.keys(sectionInfo.fields);
@@ -8,6 +10,7 @@ export default function SectionForm({ sectionInfo }) {
     data[field] = "";
     return data;
   }, {});
+  const [filledForms, setFilledForms] = useState([]);
 
   const [formData, setFormData] = useState(initialData);
   const [sectionOpen, setSectionOpen] = useState(false);
@@ -23,7 +26,10 @@ export default function SectionForm({ sectionInfo }) {
   };
   const toggleSectionOpen = () => setSectionOpen(!sectionOpen);
   const handleSubmit = (e) => {
+    e.preventDefault();
+
     setSubmitting(true);
+    setFilledForms(filledForms.concat([{ ...formData, id: uuidv4() }]));
     setTimeout(() => setSubmitting(false), 1000);
   };
 
@@ -54,6 +60,11 @@ export default function SectionForm({ sectionInfo }) {
           ))}
           <button onClick={handleSubmit}>submit</button>
         </form>
+        <div className="filledForms">
+          {filledForms.map((filledForm) => (
+            <FilledForm key={filledForm.id} formInfo={filledForm} />
+          ))}
+        </div>
       </div>
     </section>
   );
