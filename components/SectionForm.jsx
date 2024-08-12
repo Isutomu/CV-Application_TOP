@@ -14,8 +14,8 @@ export default function SectionForm({ sectionInfo }) {
   const [formData, setFormData] = useState(initialData);
   const [sectionOpen, setSectionOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [editing, setEditing] = useState(true);
   const [filledForms, setFilledForms] = useState({});
+  const [editing, setEditing] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +31,7 @@ export default function SectionForm({ sectionInfo }) {
     setSubmitting(true);
     setFilledForms({ ...filledForms, [uuidv4()]: formData });
     setFormData(initialData);
+    toggleForm(false);
 
     setTimeout(() => setSubmitting(false), 1000);
   };
@@ -41,6 +42,7 @@ export default function SectionForm({ sectionInfo }) {
     delete filledFormsCp[id];
     setFilledForms(filledFormsCp);
   };
+  const toggleForm = (visible) => setEditing(visible);
 
   return (
     <section>
@@ -52,12 +54,15 @@ export default function SectionForm({ sectionInfo }) {
       />
       <div
         className="sectionInnards"
-        style={{ visibility: sectionOpen ? "visible" : "hidden" }}
+        style={{ display: sectionOpen ? "initial" : "none" }}
       >
-        <button style={{ visibility: editing ? "hidden" : "visible" }}>
+        <button
+          onClick={() => toggleForm(true)}
+          style={{ display: editing ? "none" : "initial" }}
+        >
           +
         </button>
-        <form>
+        <form style={{ display: editing ? "initial" : "none" }}>
           {fieldsName.map((field, index) => (
             <FormInput
               key={index}
