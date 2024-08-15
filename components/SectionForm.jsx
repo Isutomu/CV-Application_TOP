@@ -45,45 +45,44 @@ export default function SectionForm({ sectionInfo }) {
   const toggleForm = (visible) => setEditing(visible);
 
   return (
-    <section>
-      <HeaderSection
-        name={sectionInfo.name}
-        sectionOpen={sectionOpen}
-        toggleSectionOpen={toggleSectionOpen}
-        submitting={submitting}
-      />
-      <div
-        className="sectionInnards"
-        style={{ display: sectionOpen ? "initial" : "none" }}
-      >
-        <button
-          onClick={() => toggleForm(true)}
-          style={{ display: editing ? "none" : "initial" }}
-        >
-          +
-        </button>
-        <form style={{ display: editing ? "initial" : "none" }}>
-          {fieldsName.map((field, index) => (
-            <FormInput
-              key={index}
-              field={field}
-              type={sectionInfo.fields[field]}
-              value={formData[field]}
-              handleChange={handleChange}
-            />
-          ))}
-          <button onClick={handleSubmit}>submit</button>
-        </form>
-        <div className="filledForms">
-          {Object.keys(filledForms).map((id) => (
-            <FilledForm
-              key={id}
-              formInfo={filledForms[id]}
-              editForm={() => handleEdit(id)}
-            />
-          ))}
+    <div>
+      <section>
+        <HeaderSection
+          name={sectionInfo.name}
+          sectionOpen={sectionOpen}
+          toggleSectionOpen={toggleSectionOpen}
+          submitting={submitting}
+        />
+        <div className={sectionOpen ? "sectionInnards" : "hidden"}>
+          <button
+            onClick={() => toggleForm(true)}
+            className={editing ? "hidden" : "addForm"}
+          >
+            +
+          </button>
+          <form className={editing ? "formInput" : "hidden"}>
+            {fieldsName.map((field, index) => (
+              <FormInput
+                key={index}
+                field={field}
+                type={sectionInfo.fields[field]}
+                value={formData[field]}
+                handleChange={handleChange}
+              />
+            ))}
+            <button onClick={handleSubmit}>submit</button>
+          </form>
+          <div className="filledForms">
+            {Object.keys(filledForms).map((id) => (
+              <FilledForm
+                key={id}
+                formInfo={filledForms[id]}
+                editForm={() => handleEdit(id)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

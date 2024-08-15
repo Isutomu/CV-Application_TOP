@@ -1,0 +1,29 @@
+::root {
+    font-size: 16px;
+}
+
+#root {
+    padding: 0 2rem;
+}
+
+body{
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 4rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+
+    padding: 3rem 0;
+}
+
+.formSections {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.hidden {
+    display: none;
+}

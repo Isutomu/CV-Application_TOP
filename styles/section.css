@@ -1,0 +1,166 @@
+.formSections > div {
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    --active-btn-color: rgb(153, 17, 153);
+    --blocks-gap: 15px;
+
+    flex-basis: 1200px;
+
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+section button {
+    border-width: 5px;
+    border-style: solid;
+    border-color: black;
+
+    color: white;
+    background-color: black;
+}
+
+section button:hover {
+    border-color: var(--active-btn-color);
+}
+
+section button:active {
+    color: var(--active-btn-color);
+}
+
+/* section header */
+.sectionHeader {
+    font-size: 2rem;
+    text-align: center;
+
+    width: 100%;
+
+    padding: 1rem;
+}
+
+.sectionHeader > span:last-child {
+    padding-left: 10px;
+}
+/*  */
+
+/* section interior */
+.sectionInnards {
+    padding: 1rem;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--blocks-gap);
+
+    text-align: center;
+
+    border: 5px solid black;
+    border-top: 0;
+}
+
+.sectionInnards > button {
+    padding: 0 100px;
+
+    font-size: 2.5rem;
+    font-weight: bolder;
+    text-shadow: 1px 1px rgb(106, 104, 104);
+}
+
+.sectionInnards > button:active {
+    color: var(--active-btn-color);
+}
+
+/*  */
+
+/* form */
+.formInput {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 30px;
+
+    padding: 5px;
+
+    border: 3px solid black;
+}
+
+.formInput label {
+    font-size: 1.5rem;
+}
+
+.formInput input {
+    text-align: start;
+    
+    padding: 2px 10px;
+
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.formInput input::placeholder {
+    color:rgb(71, 71, 71);
+}
+
+.formInput input:focus::placeholder {
+    color:rgb(179, 179, 179);
+}
+
+.formInput input:focus {
+    background-color: black;
+    color: white;
+}
+
+.formInput button {
+    padding: 0 10px;
+
+    font-weight: 600;
+    font-size: 1.1rem;
+
+    border-width: 3px;
+}
+/*  */
+
+/* filled form */
+.filledForms {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--blocks-gap);
+}
+
+.filledForm { 
+    font-size: 1.3rem;
+    width: 100%;
+
+    display: flex;
+    /* justify-content: space-between; */
+
+    border: 2px solid black;
+}
+
+.filledForm .info {
+    flex-grow: 1;
+
+    padding: 5px 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.filledForm .infoField {
+    cursor: help;
+}
+
+.filledForm > button {
+    padding: 0 15px;
+
+}
+/*  */

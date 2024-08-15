@@ -5,9 +5,12 @@ export default function HeaderSection({
   submitting,
 }) {
   return (
-    <div className={submitting ? "submitting" : ""}>
+    <button
+      className={(submitting ? "submitting" : "") + " sectionHeader"}
+      onClick={toggleSectionOpen}
+    >
       <span>{name}</span>
-      <button onClick={toggleSectionOpen}>{sectionOpen ? "▲" : "▼"}</button>
-    </div>
+      <span>{sectionOpen ? "▲" : "▼"}</span>
+    </button>
   );
 }
